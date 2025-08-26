@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>T2 JavaScript in Action: An Interactive Sandbox</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Faux editor chrome -->
+  <div class="editor-chrome" aria-hidden="true">
+    <div class="traffic">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="tabs">
+      <button class="tab active">index.html</button>
+      <button class="tab">style.css</button>
+      <button class="tab">script.js</button>
+    </div>
+  </div>
+
+  <header>
+    <h1><span class="accent">{</span> JavaScript in Action <span class="accent">}</span></h1>
+    <p class="subtitle">An Interactive Sandbox · Developer's Workspace</p>
+  </header>
+
+  <main id="mainContent">
+    <!-- Introduction -->
+    <section class="intro section-card" data-animate>
+      <h2 class="section-title">Welcome</h2>
+      <p>
+        This page is a live demo of core JavaScript interactivity. Try the dropdown, pop open a modal, and type into the form to see real-time validation — all in vanilla JS.
+      </p>
+      <pre class="code-sample"><code class="language-plain">// Tip: Use Tab/Enter/Space with buttons. Press Esc to close the modal.</code></pre>
+    </section>
+
+    <!-- Dropdown -->
+    <section class="dropdown-section section-card" data-animate>
+      <h2 class="section-title">Objective 1: The Dropdown Menu</h2>
+
+      <button id="dropdownBtn"
+              class="btn icon-right"
+              aria-expanded="false"
+              aria-controls="dropdownContent">
+        Toggle Menu
+        <span class="chevron" aria-hidden="true"></span>
+      </button>
+
+      <ul id="dropdownContent" class="dropdown" hidden>
+        <li>📁 File</li>
+        <li>⚙️ Settings</li>
+        <li>❓ Help</li>
+      </ul>
+    </section>
+
+    <!-- Modal -->
+    <section class="modal-section section-card" data-animate>
+      <h2 class="section-title">Objective 2: The Modal Window</h2>
+
+      <button id="openModal" class="btn">Open Modal</button>
+
+      <!-- Modal -->
+      <div id="modalOverlay"
+           class="modal-overlay"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="modalTitle"
+           aria-describedby="modalDesc"
+           hidden>
+        <div class="modal" role="document">
+          <h3 id="modalTitle">Modal Window</h3>
+          <p id="modalDesc">
+            This is a simple modal popup powered by JavaScript. Click close, press Esc, or click outside the box to dismiss.
+          </p>
+          <div class="modal-actions">
+            <button id="closeModal" class="btn btn-outline">Close</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Validation -->
+    <section class="form-section section-card" data-animate>
+      <h2 class="section-title">Objective 3: Live Form Validation</h2>
+
+      <form id="signupForm" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email"
+                 id="email"
+                 name="email"
+                 placeholder="you@example.com"
+                 autocomplete="email"
+                 aria-describedby="emailError" />
+          <small id="emailError" class="error" aria-live="polite"></small>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password"
+                 id="password"
+                 name="password"
+                 placeholder="At least 8 characters"
+                 autocomplete="new-password"
+                 aria-describedby="passwordError" />
+          <small id="passwordError" class="error" aria-live="polite"></small>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn" disabled>Sign Up</button>
+      </form>
+
+      <p id="successMsg" class="toast" hidden>
+        ✅ Form submitted successfully!
+      </p>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

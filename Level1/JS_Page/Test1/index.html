@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>T1 JavaScript in Action: An Interactive Sandbox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>JavaScript in Action: An Interactive Sandbox</h1>
+  </header>
+
+  <main>
+    <!-- Introduction -->
+    <section class="intro">
+      <p>
+        Welcome to this live demo of JavaScript interactivity. Explore dropdown menus, modal windows, and real-time form validation — all built with vanilla JavaScript.
+      </p>
+    </section>
+
+    <!-- Dropdown -->
+    <section class="dropdown-section">
+      <h2>Objective 1: The Dropdown Menu</h2>
+      <button id="dropdownBtn" class="btn">Toggle Menu</button>
+      <ul id="dropdownContent" class="dropdown hidden">
+        <li>📁 File</li>
+        <li>⚙️ Settings</li>
+        <li>❓ Help</li>
+      </ul>
+    </section>
+
+    <!-- Modal -->
+    <section class="modal-section">
+      <h2>Objective 2: The Modal Window</h2>
+      <button id="openModal" class="btn">Open Modal</button>
+
+      <div id="modalOverlay" class="modal-overlay hidden">
+        <div class="modal">
+          <h3>Modal Window</h3>
+          <p>This is a simple modal popup powered by JavaScript. Click close to dismiss it.</p>
+          <button id="closeModal" class="btn">Close</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Validation -->
+    <section class="form-section">
+      <h2>Objective 3: Live Form Validation</h2>
+      <form id="signupForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email"/>
+        <small id="emailError" class="error"></small>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter password"/>
+        <small id="passwordError" class="error"></small>
+
+        <button type="submit" id="submitBtn" class="btn" disabled>Sign Up</button>
+      </form>
+      <p id="successMsg" class="success hidden">✅ Form submitted successfully!</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

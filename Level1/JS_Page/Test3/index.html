@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T3 JavaScript in Action: An Interactive Sandbox</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <h1>JavaScript in Action</h1>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <p>Welcome to the interactive sandbox! This page is a live demonstration of JavaScript's capabilities. Interact with the components below to see how dropdowns, modals, and real-time form validation work.</p>
+        </section>
+
+        <section id="dropdown-section">
+            <h2>Objective 1: The Dropdown Menu</h2>
+            <button id="dropdown-btn" class="btn">Toggle Menu</button>
+            <div id="dropdown-content" class="dropdown-content">
+                <ul>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="modal-section">
+            <h2>Objective 2: The Modal Window</h2>
+            <button id="modal-btn" class="btn">Open Modal</button>
+        </section>
+
+        <div id="modal-overlay" class="modal-overlay">
+            <div class="modal-content">
+                <h3>Modal Title</h3>
+                <p>This is a modal window, a common UI pattern used to display information without leaving the current page. Click the close button or outside this box to dismiss it.</p>
+                <button id="modal-close-btn" class="btn">Close</button>
+            </div>
+        </div>
+
+
+        <section id="form-section">
+            <h2>Objective 3: Live Form Validation</h2>
+            <form id="signup-form" novalidate>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com">
+                    <small class="error-message" id="email-error"></small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="8+ characters required">
+                    <small class="error-message" id="password-error"></small>
+                </div>
+                <button type="submit" id="submit-btn" class="btn" disabled>Sign Up</button>
+                <p id="success-message" class="success-message"></p>
+            </form>
+        </section>
+
+    </main>
+
+</body>
+</html>
