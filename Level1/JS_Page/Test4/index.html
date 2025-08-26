@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>T4 JavaScript in Action: An Interactive Sandbox</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="editor-chrome" aria-hidden="true">
+        <div class="traffic-lights">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="tabs">
+            <div class="tab active">script.js</div>
+            <div class="tab">index.html</div>
+            <div class="tab">style.css</div>
+        </div>
+    </div>
+
+    <header>
+        <h1><span class="accent">{</span> JavaScript in Action <span class="accent">}</span></h1>
+        <p class="subtitle">An Interactive Sandbox for Beginners</p>
+    </header>
+
+    <main>
+        <section class="intro section-card" data-animate>
+            <h2 class="section-title">Welcome!</h2>
+            <p>This page is a live demonstration of core JavaScript interactivity. Try out the dropdown, open the modal, and use the form to see real-time validation in action.</p>
+            <pre class="code-sample"><code>// Tip: Press 'Esc' to close the modal anytime.</code></pre>
+        </section>
+
+        <section class="section-card" data-animate>
+            <h2 class="section-title">Objective 1: The Dropdown Menu</h2>
+            <button id="dropdown-btn" class="btn icon-right" aria-expanded="false" aria-controls="dropdown-content">
+                Toggle Menu
+                <span class="chevron" aria-hidden="true"></span>
+            </button>
+            <ul id="dropdown-content" class="dropdown" hidden>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </section>
+
+        <section class="section-card" data-animate>
+            <h2 class="section-title">Objective 2: The Modal Window</h2>
+            <button id="modal-btn" class="btn">Open Modal</button>
+        </section>
+
+        <section class="section-card" data-animate>
+            <h2 class="section-title">Objective 3: Live Form Validation</h2>
+            <form id="signup-form" novalidate>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" aria-describedby="email-error" />
+                    <small id="email-error" class="error-message" aria-live="polite"></small>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="At least 8 characters" aria-describedby="password-error" />
+                    <small id="password-error" class="error-message" aria-live="polite"></small>
+                </div>
+                <button type="submit" id="submit-btn" class="btn" disabled>Sign Up</button>
+            </form>
+            <p id="success-message" class="toast" hidden>
+                ✅ Form submitted successfully!
+            </p>
+        </section>
+    </main>
+
+    <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+        <div class="modal-content" role="document">
+            <h3 id="modal-title">Modal Title</h3>
+            <p>This is a modal window, a common UI pattern used to display information without leaving the page. Click the close button, press 'Esc', or click the background to dismiss.</p>
+            <div class="modal-actions">
+                <button id="modal-close-btn" class="btn btn-outline">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
