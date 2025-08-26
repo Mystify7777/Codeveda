@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryan Kumar - Full-Stack Developer</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="antialiased">
+
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#hero" class="text-2xl font-bold text-white tracking-widest hover:text-cyan-400 transition">AK</a>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden text-white">
+        <i data-feather="menu"></i>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-slate-900/80 backdrop-blur-sm animate-slideDown">
+      <a href="#about" class="mobile-link">About</a>
+      <a href="#skills" class="mobile-link">Skills</a>
+      <a href="#projects" class="mobile-link">Projects</a>
+      <a href="#experience" class="mobile-link">Experience</a>
+      <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6">
+    <!-- Hero -->
+    <section id="hero" class="min-h-screen flex items-center justify-center text-center fade-in">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-wide">
+          Aryan Kumar
+        </h1>
+        <h2 class="text-2xl md:text-3xl mt-4 font-light">
+          <span id="typing-text" class="text-glow"></span><span class="typing-cursor"></span>
+        </h2>
+        <p class="mt-6 text-slate-400 max-w-xl mx-auto leading-relaxed">
+          A results-driven developer and Smart India Hackathon 2024 Finalist, building robust and user-centric applications.
+        </p>
+        <div class="mt-8 flex justify-center gap-4">
+          <a href="#projects" class="btn-primary">View My Work</a>
+          <a href="mailto:aryan.k.dev@email.com" class="btn-outline">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 md:py-32 scroll-mt-20 fade-up">
+      <h2 class="section-title">About Me</h2>
+      <div class="mt-12 grid md:grid-cols-5 gap-12 items-center">
+        <div class="md:col-span-3 space-y-4 text-slate-400">
+          <p>Hello! I'm Aryan, a Computer Science student with a deep passion for full-stack development. I thrive on solving complex problems with elegant, efficient solutions.</p>
+          <p>From scalable backends with Node.js to sleek frontends with React, I embrace challenges that push me to learn. My **Smart India Hackathon Finalist** experience taught me innovation under pressure.</p>
+          <p>I value clean, maintainable code and enjoy contributing to open-source projects and algorithmic challenges on LeetCode.</p>
+        </div>
+        <div class="md:col-span-2 flex justify-center">
+          <div class="profile-pic">
+            <img src="https://placehold.co/250x250/0a0f1e/00ffff?text=AK" alt="Aryan Kumar" class="rounded-full w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 md:py-32 scroll-mt-20 fade-up">
+      <h2 class="section-title">Technical Skillset</h2>
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="skill-card"><i data-feather="code"></i><h3>Languages</h3><p>JavaScript, Python, HTML5, CSS3</p></div>
+        <div class="skill-card"><i data-feather="figma"></i><h3>Frontend</h3><p>React.js, Tailwind CSS, Responsive Design</p></div>
+        <div class="skill-card"><i data-feather="server"></i><h3>Backend</h3><p>Node.js, Express.js</p></div>
+        <div class="skill-card"><i data-feather="database"></i><h3>Databases</h3><p>MongoDB, MySQL</p></div>
+        <div class="skill-card"><i data-feather="tool"></i><h3>Tools</h3><p>Git, GitHub, Docker, Postman</p></div>
+        <div class="skill-card"><i data-feather="cpu"></i><h3>Problem Solving</h3><p>DSA, Algorithms</p></div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 md:py-32 scroll-mt-20 fade-up">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="mt-12 grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="project-card">
+          <h3>Alter Dime</h3>
+          <p class="subtitle">Smart India Hackathon Finalist</p>
+          <p>A MERN application with scalable frontend and secure backend. Built 15+ React components and 10+ API endpoints.</p>
+          <div class="tags"><span>React.js</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span></div>
+          <a href="https://github.com/Mystify7777/AlterDime" target="_blank" class="icon-link"><i data-feather="github"></i></a>
+        </div>
+        <div class="project-card">
+          <h3>Real-Time Weather Dashboard</h3>
+          <p>A dynamic app fetching real-time weather data with clean UI. Used async JS for API handling.</p>
+          <div class="tags"><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>REST API</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="py-20 md:py-32 scroll-mt-20 fade-up">
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>Web Development Lead</h3>
+          <p class="subtitle">Cybercell Club, BCET | Durgapur</p>
+          <ul>
+            <li>Led React-based club website development.</li>
+            <li>Mentored 5 juniors on fundamentals.</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <h3>Web Development Intern</h3>
+          <p class="subtitle">Prodigy Infotech | Remote</p>
+          <ul>
+            <li>Built a responsive stopwatch app.</li>
+            <li>Developed CRUD application using Node.js & MongoDB.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 md:py-32 text-center scroll-mt-20 fade-up">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="mt-4 text-slate-400 max-w-xl mx-auto">I’m open to opportunities & collaborations. Drop me a message anytime!</p>
+      <a href="mailto:aryan.k.dev@email.com" class="btn-primary mt-8">Say Hello</a>
+      <div class="mt-12 flex justify-center space-x-6">
+        <a href="https://github.com/Mystify7777" target="_blank" class="icon-link"><i data-feather="github"></i></a>
+        <a href="https://www.linkedin.com/in/aryan-kumar-mystify7777/" target="_blank" class="icon-link"><i data-feather="linkedin"></i></a>
+        <a href="https://leetcode.com/u/Mystify7777/" target="_blank" class="icon-link"><i data-feather="code"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center py-8 border-t border-slate-800">
+    <p class="text-slate-500">Designed & Built by Aryan Kumar</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
