@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lists and Tables in HTML | Learn HTML</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-xl font-bold text-blue-600 dark:text-blue-400">Learn HTML</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:text-blue-600">Home</a>
+        <a href="introduction.html" class="hover:text-blue-600">Introduction</a>
+        <a href="basics.html" class="hover:text-blue-600">Basics</a>
+        <a href="text.html" class="hover:text-blue-600">Text</a>
+        <a href="lists-tables.html" class="text-blue-600 font-semibold">Lists & Tables</a>
+        <a href="links-images.html" class="hover:text-blue-600">Links & Images</a>
+        <a href="forms.html" class="hover:text-blue-600">Forms</a>
+        <a href="semantic.html" class="hover:text-blue-600">Semantic</a>
+      </nav>
+      <!-- Dark/Light Toggle -->
+      <button id="themeToggle" class="ml-4 px-3 py-1 rounded bg-blue-600 text-white dark:bg-gray-700 dark:text-gray-200">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">Organizing Data with Lists and Tables</h2>
+
+    <!-- Unordered Lists -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Unordered Lists</h3>
+      <p class="mb-4">Unordered lists are used when the order of items does not matter. They use the <code>&lt;ul&gt;</code> (unordered list) and <code>&lt;li&gt;</code> (list item) tags.</p>
+
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto mb-4">
+        &lt;ul&gt;<br/>
+        &nbsp;&nbsp;&lt;li&gt;Apples&lt;/li&gt;<br/>
+        &nbsp;&nbsp;&lt;li&gt;Bananas&lt;/li&gt;<br/>
+        &nbsp;&nbsp;&lt;li&gt;Cherries&lt;/li&gt;<br/>
+        &lt;/ul&gt;
+      </div>
+
+      <ul class="list-disc list-inside p-4 border rounded bg-white dark:bg-gray-800">
+        <li>Apples</li>
+        <li>Bananas</li>
+        <li>Cherries</li>
+      </ul>
+    </section>
+
+    <!-- Ordered Lists -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Ordered Lists</h3>
+      <p class="mb-4">Ordered lists are used when the sequence of items matters. They use the <code>&lt;ol&gt;</code> tag with <code>&lt;li&gt;</code> items.</p>
+
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto mb-4">
+        &lt;ol&gt;<br/>
+        &nbsp;&nbsp;&lt;li&gt;Step One&lt;/li&gt;<br/>
+        &nbsp;&nbsp;&lt;li&gt;Step Two&lt;/li&gt;<br/>
+        &nbsp;&nbsp;&lt;li&gt;Step Three&lt;/li&gt;<br/>
+        &lt;/ol&gt;
+      </div>
+
+      <ol class="list-decimal list-inside p-4 border rounded bg-white dark:bg-gray-800">
+        <li>Step One</li>
+        <li>Step Two</li>
+        <li>Step Three</li>
+      </ol>
+    </section>
+
+    <!-- Tables -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">HTML Tables</h3>
+      <p class="mb-4">Tables allow you to arrange data into rows and columns using <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code> (table row), <code>&lt;th&gt;</code> (table header), and <code>&lt;td&gt;</code> (table data).</p>
+
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto mb-4">
+        &lt;table&gt;<br/>
+        &nbsp;&nbsp;&lt;tr&gt;<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Name&lt;/th&gt;<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Age&lt;/th&gt;<br/>
+        &nbsp;&nbsp;&lt;/tr&gt;<br/>
+        &nbsp;&nbsp;&lt;tr&gt;<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Alice&lt;/td&gt;<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;24&lt;/td&gt;<br/>
+        &nbsp;&nbsp;&lt;/tr&gt;<br/>
+        &nbsp;&nbsp;&lt;tr&gt;<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Bob&lt;/td&gt;<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;30&lt;/td&gt;<br/>
+        &nbsp;&nbsp;&lt;/tr&gt;<br/>
+        &lt;/table&gt;
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="table-auto border-collapse border border-gray-400 dark:border-gray-600 w-full text-left bg-white dark:bg-gray-800">
+          <thead class="bg-gray-200 dark:bg-gray-700">
+            <tr>
+              <th class="border border-gray-400 dark:border-gray-600 px-4 py-2">Name</th>
+              <th class="border border-gray-400 dark:border-gray-600 px-4 py-2">Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-400 dark:border-gray-600 px-4 py-2">Alice</td>
+              <td class="border border-gray-400 dark:border-gray-600 px-4 py-2">24</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-400 dark:border-gray-600 px-4 py-2">Bob</td>
+              <td class="border border-gray-400 dark:border-gray-600 px-4 py-2">30</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <a href="links-images.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition">
+      Next: Links & Images →
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 mt-12">
+    <p>&copy; 2025 Learn HTML | Built with ❤️ for beginners</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const html = document.documentElement;
+
+    if (localStorage.getItem("theme") === "light") {
+      html.classList.remove("dark");
+      toggleBtn.textContent = "🌞";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      html.classList.toggle("dark");
+      if (html.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "🌙";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "🌞";
+      }
+    });
+  </script>
+</body>
+</html>

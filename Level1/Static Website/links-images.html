@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Links and Images in HTML | Learn HTML</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-xl font-bold text-blue-600 dark:text-blue-400">Learn HTML</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:text-blue-600">Home</a>
+        <a href="introduction.html" class="hover:text-blue-600">Introduction</a>
+        <a href="basics.html" class="hover:text-blue-600">Basics</a>
+        <a href="text.html" class="hover:text-blue-600">Text</a>
+        <a href="lists-tables.html" class="hover:text-blue-600">Lists & Tables</a>
+        <a href="links-images.html" class="text-blue-600 font-semibold">Links & Images</a>
+        <a href="forms.html" class="hover:text-blue-600">Forms</a>
+        <a href="semantic.html" class="hover:text-blue-600">Semantic</a>
+      </nav>
+      <!-- Dark/Light Toggle -->
+      <button id="themeToggle" class="ml-4 px-3 py-1 rounded bg-blue-600 text-white dark:bg-gray-700 dark:text-gray-200">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">Adding Links and Images</h2>
+
+    <!-- Hyperlinks -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Hyperlinks</h3>
+      <p class="mb-4">
+        Hyperlinks are created with the <code>&lt;a&gt;</code> (anchor) tag. They can link to external websites or to internal pages within your own site.
+      </p>
+
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto mb-4">
+        &lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;<br/>
+        &lt;a href="basics.html"&gt;Go to HTML Basics&lt;/a&gt;
+      </div>
+
+      <p class="mb-2">🔗 Example Output:</p>
+      <p class="space-x-4">
+        <a href="https://www.google.com" target="_blank" class="text-blue-600 underline hover:text-blue-500">Visit Google</a>
+        <a href="basics.html" class="text-blue-600 underline hover:text-blue-500">Go to HTML Basics</a>
+      </p>
+    </section>
+
+    <!-- Images -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Images</h3>
+      <p class="mb-4">
+        The <code>&lt;img&gt;</code> tag is used to display images. It requires the <code>src</code> (image path) and <code>alt</code> (alternative text) attributes.
+      </p>
+
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto mb-4">
+        &lt;img src="https://imgs.search.brave.com/219eMoi8TI75g-fi0buN_LnlJ9diSwmg2Obp6jU-g2Q/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aG9zdGluZ2VyLmNv/bS90dXRvcmlhbHMv/d3AtY29udGVudC91/cGxvYWRzL3NpdGVz/LzIvMjAxOC8xMS93/aGF0LWlzLWh0bWwt/My5qcGc" width="500px" alt="Placeholder Image"&gt;
+      </div>
+
+      <p class="mb-2">🖼 Example Output:</p>
+      <img src="https://imgs.search.brave.com/219eMoi8TI75g-fi0buN_LnlJ9diSwmg2Obp6jU-g2Q/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/aG9zdGluZ2VyLmNv/bS90dXRvcmlhbHMv/d3AtY29udGVudC91/cGxvYWRzL3NpdGVz/LzIvMjAxOC8xMS93/aGF0LWlzLWh0bWwt/My5qcGc" width="500px" alt="Placeholder Image" class="rounded shadow-md border" />
+    </section>
+
+    <!-- Combined Example -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Links with Images</h3>
+      <p class="mb-4">
+        You can even turn an image into a clickable link by wrapping it inside an <code>&lt;a&gt;</code> tag.
+      </p>
+
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto mb-4">
+        &lt;a href="https://openai.com" target="_blank"&gt;<br/>
+        &nbsp;&nbsp;&lt;img src="https://imgs.search.brave.com/it0fhVrdrLlfTWdRQK2FCDHpN0XbFXpruvX0liZS3jU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5jbmJjZm0uY29t/L2FwaS92MS9pbWFn/ZS8xMDgwNjY1OTQt/MTczMjIyNTE3NTQ4/MC1nZXR0eWltYWdl/cy0yMTg1Mjc1MTQ2/LWF2aWxzLW5vdGl0/bGUyNDExMjFfbnBM/aEQuanBlZz92PTE3/NTU4MjU5MTAmdz02/MDAmaD0zMDAmdnRj/cm9wPXk" alt="Clickable Image"&gt;<br/>
+        &lt;/a&gt;
+      </div>
+
+      <p class="mb-2">🔗🖼 Example Output:</p>
+      <a href="https://openai.com" target="_blank">
+        <img src="https://imgs.search.brave.com/it0fhVrdrLlfTWdRQK2FCDHpN0XbFXpruvX0liZS3jU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5jbmJjZm0uY29t/L2FwaS92MS9pbWFn/ZS8xMDgwNjY1OTQt/MTczMjIyNTE3NTQ4/MC1nZXR0eWltYWdl/cy0yMTg1Mjc1MTQ2/LWF2aWxzLW5vdGl0/bGUyNDExMjFfbnBM/aEQuanBlZz92PTE3/NTU4MjU5MTAmdz02/MDAmaD0zMDAmdnRj/cm9wPXk" alt="Clickable Image" class="rounded-lg border hover:opacity-80 transition" />
+      </a>
+    </section>
+
+    <a href="forms.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition">
+      Next: Forms →
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 mt-12">
+    <p>&copy; 2025 Learn HTML | Built with ❤️ for beginners</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const html = document.documentElement;
+
+    if (localStorage.getItem("theme") === "light") {
+      html.classList.remove("dark");
+      toggleBtn.textContent = "🌞";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      html.classList.toggle("dark");
+      if (html.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "🌙";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "🌞";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semantic HTML | Learn HTML</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-xl font-bold text-blue-600 dark:text-blue-400">Learn HTML</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:text-blue-600">Home</a>
+        <a href="introduction.html" class="hover:text-blue-600">Introduction</a>
+        <a href="basics.html" class="hover:text-blue-600">Basics</a>
+        <a href="text.html" class="hover:text-blue-600">Text</a>
+        <a href="lists-tables.html" class="hover:text-blue-600">Lists & Tables</a>
+        <a href="links-images.html" class="hover:text-blue-600">Links & Images</a>
+        <a href="forms.html" class="hover:text-blue-600">Forms</a>
+        <a href="semantic.html" class="text-blue-600 font-semibold">Semantic</a>
+      </nav>
+      <!-- Dark/Light Toggle -->
+      <button id="themeToggle" class="ml-4 px-3 py-1 rounded bg-blue-600 text-white dark:bg-gray-700 dark:text-gray-200">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">Writing Modern, Semantic HTML</h2>
+    <p class="mb-6 text-lg">
+      Semantic HTML uses meaningful tags to describe the structure and purpose of content. 
+      This improves <strong>readability, accessibility, and SEO</strong>.
+    </p>
+
+    <!-- Why Semantic -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Why Use Semantic HTML?</h3>
+      <ul class="list-disc list-inside space-y-2">
+        <li>Helps <strong>search engines</strong> better understand your content.</li>
+        <li>Improves <strong>accessibility</strong> for screen readers and assistive tech.</li>
+        <li>Makes your code easier to read and maintain.</li>
+      </ul>
+    </section>
+
+    <!-- Common Tags -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Common Semantic Tags</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow">
+          <h4 class="font-bold mb-2">&lt;header&gt;</h4>
+          <p>Defines the top section of a page or article (often includes logos or navigation).</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow">
+          <h4 class="font-bold mb-2">&lt;nav&gt;</h4>
+          <p>Contains navigation links to other parts of the site.</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow">
+          <h4 class="font-bold mb-2">&lt;main&gt;</h4>
+          <p>Represents the main content of the page (unique and central part).</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow">
+          <h4 class="font-bold mb-2">&lt;section&gt;</h4>
+          <p>Groups related content together, like chapters in a book.</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow">
+          <h4 class="font-bold mb-2">&lt;article&gt;</h4>
+          <p>Represents independent, self-contained content (like a blog post).</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow">
+          <h4 class="font-bold mb-2">&lt;aside&gt;</h4>
+          <p>Contains side content such as ads, quotes, or related links.</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow md:col-span-2">
+          <h4 class="font-bold mb-2">&lt;footer&gt;</h4>
+          <p>Represents the bottom section of a page or article (usually with contact info or copyright).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example Layout -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Example Semantic Layout</h3>
+      <div class="bg-gray-900 text-green-400 font-mono p-6 rounded-lg overflow-x-auto">
+&lt;header&gt;<br/>
+&nbsp;&nbsp;&lt;h1&gt;My Blog&lt;/h1&gt;<br/>
+&lt;/header&gt;<br/><br/>
+&lt;nav&gt;<br/>
+&nbsp;&nbsp;&lt;a href="#"&gt;Home&lt;/a&gt; | &lt;a href="#"&gt;About&lt;/a&gt;<br/>
+&lt;/nav&gt;<br/><br/>
+&lt;main&gt;<br/>
+&nbsp;&nbsp;&lt;section&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;article&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Blog Post&lt;/h2&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;This is my first blog post.&lt;/p&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/article&gt;<br/>
+&nbsp;&nbsp;&lt;/section&gt;<br/>
+&nbsp;&nbsp;&lt;aside&gt;Related links here&lt;/aside&gt;<br/>
+&lt;/main&gt;<br/><br/>
+&lt;footer&gt;<br/>
+&nbsp;&nbsp;&lt;p&gt;Copyright 2025&lt;/p&gt;<br/>
+&lt;/footer&gt;
+      </div>
+    </section>
+
+    <a href="index.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition">
+      ← Back to Home
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 mt-12">
+    <p>&copy; 2025 Learn HTML | Built with ❤️ for beginners</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const html = document.documentElement;
+
+    if (localStorage.getItem("theme") === "light") {
+      html.classList.remove("dark");
+      toggleBtn.textContent = "🌞";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      html.classList.toggle("dark");
+      if (html.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "🌙";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "🌞";
+      }
+    });
+  </script>
+</body>
+</html>

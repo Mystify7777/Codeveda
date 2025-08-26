@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn HTML: The Ultimate Guide for Beginners</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-xl font-bold text-blue-600 dark:text-blue-400">Learn HTML</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="text-blue-600 font-semibold">Home</a>
+        <a href="introduction.html" class="hover:text-blue-600">Introduction</a>
+        <a href="basics.html" class="hover:text-blue-600">Basics</a>
+        <a href="text.html" class="hover:text-blue-600">Text</a>
+        <a href="lists-tables.html" class="hover:text-blue-600">Lists & Tables</a>
+        <a href="links-images.html" class="hover:text-blue-600">Links & Images</a>
+        <a href="forms.html" class="hover:text-blue-600">Forms</a>
+        <a href="semantic.html" class="hover:text-blue-600">Semantic</a>
+      </nav>
+      <!-- Dark/Light Toggle -->
+      <button id="themeToggle" class="ml-4 px-3 py-1 rounded bg-blue-600 text-white dark:bg-gray-700 dark:text-gray-200">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="container mx-auto px-6 py-20 text-center">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">Welcome to the Ultimate HTML Guide</h2>
+    <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+      Your journey to mastering web development starts here. Learn the foundational language of the web from scratch.
+    </p>
+    <a href="introduction.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition">
+      Get Started
+    </a>
+  </main>
+
+  <!-- Features Section -->
+  <section class="container mx-auto px-6 py-16 grid md:grid-cols-3 gap-8">
+    <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow hover:scale-105 transition">
+      <h3 class="text-xl font-semibold mb-2">Beginner Friendly</h3>
+      <p>Simple explanations and examples for complete beginners.</p>
+    </div>
+    <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow hover:scale-105 transition">
+      <h3 class="text-xl font-semibold mb-2">Practical Examples</h3>
+      <p>Hands-on learning with real code snippets you can try.</p>
+    </div>
+    <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow hover:scale-105 transition">
+      <h3 class="text-xl font-semibold mb-2">Modern Concepts</h3>
+      <p>Learn not just old HTML but semantic & accessible modern practices.</p>
+    </div>
+  </section>
+
+  <!-- Quick Links Section -->
+  <section class="container mx-auto px-6 py-12">
+    <h3 class="text-2xl font-bold mb-6 text-center">Explore Topics</h3>
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <a href="basics.html" class="block p-6 bg-blue-50 dark:bg-gray-800 rounded-lg shadow hover:bg-blue-100 dark:hover:bg-gray-700 transition">
+        <h4 class="font-semibold">HTML Basics</h4>
+      </a>
+      <a href="text.html" class="block p-6 bg-blue-50 dark:bg-gray-800 rounded-lg shadow hover:bg-blue-100 dark:hover:bg-gray-700 transition">
+        <h4 class="font-semibold">Text Formatting</h4>
+      </a>
+      <a href="forms.html" class="block p-6 bg-blue-50 dark:bg-gray-800 rounded-lg shadow hover:bg-blue-100 dark:hover:bg-gray-700 transition">
+        <h4 class="font-semibold">Forms</h4>
+      </a>
+      <a href="semantic.html" class="block p-6 bg-blue-50 dark:bg-gray-800 rounded-lg shadow hover:bg-blue-100 dark:hover:bg-gray-700 transition">
+        <h4 class="font-semibold">Semantic HTML</h4>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 mt-12">
+    <p>&copy; 2025 Learn HTML | Built with ❤️ for beginners</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const html = document.documentElement;
+
+    // Load saved preference
+    if (localStorage.getItem("theme") === "light") {
+      html.classList.remove("dark");
+      toggleBtn.textContent = "🌞";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      html.classList.toggle("dark");
+      if (html.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "🌙";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "🌞";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text Formatting in HTML | Learn HTML</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-xl font-bold text-blue-600 dark:text-blue-400">Learn HTML</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:text-blue-600">Home</a>
+        <a href="introduction.html" class="hover:text-blue-600">Introduction</a>
+        <a href="basics.html" class="hover:text-blue-600">Basics</a>
+        <a href="text.html" class="text-blue-600 font-semibold">Text</a>
+        <a href="lists-tables.html" class="hover:text-blue-600">Lists & Tables</a>
+        <a href="links-images.html" class="hover:text-blue-600">Links & Images</a>
+        <a href="forms.html" class="hover:text-blue-600">Forms</a>
+        <a href="semantic.html" class="hover:text-blue-600">Semantic</a>
+      </nav>
+      <!-- Dark/Light Toggle -->
+      <button id="themeToggle" class="ml-4 px-3 py-1 rounded bg-blue-600 text-white dark:bg-gray-700 dark:text-gray-200">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">Formatting Text in HTML</h2>
+
+    <!-- Headings -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Headings</h3>
+      <p class="mb-4">
+        HTML provides six levels of headings, from <code>&lt;h1&gt;</code> (most important) to <code>&lt;h6&gt;</code> (least important).
+      </p>
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto mb-4">
+        &lt;h1&gt;Heading 1&lt;/h1&gt;<br/>
+        &lt;h2&gt;Heading 2&lt;/h2&gt;<br/>
+        &lt;h3&gt;Heading 3&lt;/h3&gt;<br/>
+        &lt;h4&gt;Heading 4&lt;/h4&gt;<br/>
+        &lt;h5&gt;Heading 5&lt;/h5&gt;<br/>
+        &lt;h6&gt;Heading 6&lt;/h6&gt;
+      </div>
+      <div class="p-4 border rounded bg-white dark:bg-gray-800">
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+      </div>
+    </section>
+
+    <!-- Paragraphs -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Paragraphs</h3>
+      <p class="mb-4">
+        Paragraphs are defined with the <code>&lt;p&gt;</code> tag and are used to structure blocks of text.
+      </p>
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto mb-4">
+        &lt;p&gt;This is a paragraph of text in HTML.&lt;/p&gt;
+      </div>
+      <p class="p-4 border rounded bg-white dark:bg-gray-800">This is a paragraph of text in HTML.</p>
+    </section>
+
+    <!-- Text Styling -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Styling Text</h3>
+      <p class="mb-4">HTML offers several tags to style and emphasize text:</p>
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto mb-4">
+        &lt;strong&gt;Important text&lt;/strong&gt;<br/>
+        &lt;em&gt;Emphasized text&lt;/em&gt;<br/>
+        &lt;b&gt;Bold text&lt;/b&gt;<br/>
+        &lt;i&gt;Italic text&lt;/i&gt;<br/>
+        &lt;u&gt;Underlined text&lt;/u&gt;<br/>
+        &lt;s&gt;Strikethrough text&lt;/s&gt;
+      </div>
+      <p class="p-4 border rounded bg-white dark:bg-gray-800">
+        <strong>Important text</strong> |
+        <em>Emphasized text</em> |
+        <b>Bold text</b> |
+        <i>Italic text</i> |
+        <u>Underlined text</u> |
+        <s>Strikethrough text</s>
+      </p>
+      <p class="mt-4">
+        ✅ <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> carry semantic meaning (importance and emphasis).  
+        ❌ <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> are purely visual (bold/italic without meaning).
+      </p>
+    </section>
+
+    <a href="lists-tables.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition">
+      Next: Lists & Tables →
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 mt-12">
+    <p>&copy; 2025 Learn HTML | Built with ❤️ for beginners</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const html = document.documentElement;
+
+    // Load saved preference
+    if (localStorage.getItem("theme") === "light") {
+      html.classList.remove("dark");
+      toggleBtn.textContent = "🌞";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      html.classList.toggle("dark");
+      if (html.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "🌙";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "🌞";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is HTML? | Learn HTML</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-xl font-bold text-blue-600 dark:text-blue-400">Learn HTML</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:text-blue-600">Home</a>
+        <a href="introduction.html" class="text-blue-600 font-semibold">Introduction</a>
+        <a href="basics.html" class="hover:text-blue-600">Basics</a>
+        <a href="text.html" class="hover:text-blue-600">Text</a>
+        <a href="lists-tables.html" class="hover:text-blue-600">Lists & Tables</a>
+        <a href="links-images.html" class="hover:text-blue-600">Links & Images</a>
+        <a href="forms.html" class="hover:text-blue-600">Forms</a>
+        <a href="semantic.html" class="hover:text-blue-600">Semantic</a>
+      </nav>
+      <!-- Dark/Light Toggle -->
+      <button id="themeToggle" class="ml-4 px-3 py-1 rounded bg-blue-600 text-white dark:bg-gray-700 dark:text-gray-200">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">What is HTML?</h2>
+    <p class="text-lg leading-relaxed mb-6">
+      HTML (HyperText Markup Language) is the standard language used to create and design documents on the web. 
+      It provides the basic structure of web pages, which is then enhanced and styled by CSS and made interactive by JavaScript.
+    </p>
+
+    <div class="bg-blue-50 dark:bg-gray-800 p-6 rounded-lg shadow mb-10">
+      <h3 class="text-2xl font-semibold mb-4">Why Learn HTML?</h3>
+      <ul class="list-disc list-inside space-y-2">
+        <li>It’s the <strong>foundation of all websites</strong>.</li>
+        <li>Essential for anyone starting a career in <strong>web development</strong>.</li>
+        <li>HTML is <strong>easy to learn</strong> and beginner friendly.</li>
+        <li>It helps you understand how the web really works under the hood.</li>
+      </ul>
+    </div>
+
+    <p class="text-lg mb-8">
+      In short, HTML is like the <strong>bones of a website</strong>. Without it, there’s no structure, no text, no images — nothing! 
+      That’s why every aspiring developer starts here.
+    </p>
+
+    <a href="basics.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition">
+      Next: Learn the Basics →
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 mt-12">
+    <p>&copy; 2025 Learn HTML | Built with ❤️ for beginners</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const html = document.documentElement;
+
+    // Load saved preference
+    if (localStorage.getItem("theme") === "light") {
+      html.classList.remove("dark");
+      toggleBtn.textContent = "🌞";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      html.classList.toggle("dark");
+      if (html.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "🌙";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "🌞";
+      }
+    });
+  </script>
+</body>
+</html>

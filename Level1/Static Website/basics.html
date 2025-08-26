@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Basics: Tags, Elements, and Attributes | Learn HTML</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-xl font-bold text-blue-600 dark:text-blue-400">Learn HTML</h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:text-blue-600">Home</a>
+        <a href="introduction.html" class="hover:text-blue-600">Introduction</a>
+        <a href="basics.html" class="text-blue-600 font-semibold">Basics</a>
+        <a href="text.html" class="hover:text-blue-600">Text</a>
+        <a href="lists-tables.html" class="hover:text-blue-600">Lists & Tables</a>
+        <a href="links-images.html" class="hover:text-blue-600">Links & Images</a>
+        <a href="forms.html" class="hover:text-blue-600">Forms</a>
+        <a href="semantic.html" class="hover:text-blue-600">Semantic</a>
+      </nav>
+      <!-- Dark/Light Toggle -->
+      <button id="themeToggle" class="ml-4 px-3 py-1 rounded bg-blue-600 text-white dark:bg-gray-700 dark:text-gray-200">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">The Building Blocks of HTML</h2>
+
+    <!-- Tags & Elements -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">HTML Tags and Elements</h3>
+      <p class="mb-4">
+        HTML uses <strong>tags</strong> to define elements on a webpage. Tags usually come in pairs:
+        an <em>opening tag</em> and a <em>closing tag</em>.
+      </p>
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto">
+        &lt;p&gt;This is a paragraph.&lt;/p&gt;
+      </div>
+      <p class="mt-4">Here, <code>&lt;p&gt;</code> is the opening tag, <code>This is a paragraph.</code> is the content, and <code>&lt;/p&gt;</code> is the closing tag.</p>
+    </section>
+
+    <!-- Attributes -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">HTML Attributes</h3>
+      <p class="mb-4">
+        Attributes provide <strong>extra information</strong> about an element. 
+        For example, the <code>&lt;a&gt;</code> (anchor) tag uses the <code>href</code> attribute to specify the link’s destination:
+      </p>
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto">
+        &lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;
+      </div>
+      <p class="mt-4">This creates a clickable link that takes you to Google.</p>
+    </section>
+
+    <!-- Basic Document Structure -->
+    <section class="mb-12">
+      <h3 class="text-2xl font-semibold mb-4">Basic HTML Document Structure</h3>
+      <p class="mb-4">Every HTML document starts with a standard boilerplate structure:</p>
+      <div class="bg-gray-900 text-green-400 font-mono p-4 rounded-lg overflow-x-auto">
+        &lt;!DOCTYPE html&gt;<br/>
+        &lt;html&gt;<br/>
+        &nbsp;&nbsp;&lt;head&gt;<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;My First Page&lt;/title&gt;<br/>
+        &nbsp;&nbsp;&lt;/head&gt;<br/>
+        &nbsp;&nbsp;&lt;body&gt;<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Hello World&lt;/h1&gt;<br/>
+        &nbsp;&nbsp;&lt;/body&gt;<br/>
+        &lt;/html&gt;
+      </div>
+      <p class="mt-4">This defines a simple webpage that displays "Hello World" as a heading.</p>
+    </section>
+
+    <a href="text.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition">
+      Next: Text Formatting →
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 mt-12">
+    <p>&copy; 2025 Learn HTML | Built with ❤️ for beginners</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const html = document.documentElement;
+
+    // Load saved preference
+    if (localStorage.getItem("theme") === "light") {
+      html.classList.remove("dark");
+      toggleBtn.textContent = "🌞";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      html.classList.toggle("dark");
+      if (html.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        toggleBtn.textContent = "🌙";
+      } else {
+        localStorage.setItem("theme", "light");
+        toggleBtn.textContent = "🌞";
+      }
+    });
+  </script>
+</body>
+</html>
