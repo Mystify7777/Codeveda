@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PhotoSplash — Final Version</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="main-header" role="banner">
+    <div class="inner container">
+      <a class="logo" href="#" aria-label="PhotoSplash">PhotoSplash</a>
+
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero container">
+      <h1 class="title">Our Photo Gallery</h1>
+      <p class="subtitle">Curated visuals — minimal, immersive, responsive.</p>
+    </section>
+
+    <section id="gallery" class="container">
+      <div id="photo-gallery" class="photo-gallery" aria-live="polite"></div>
+    </section>
+
+    <section id="about" class="container prose">
+      <h2>About</h2>
+      <p>Performance-first gallery with a modern minimalist dark theme and a JavaScript-powered masonry layout.</p>
+    </section>
+
+    <section id="contact" class="container prose">
+      <h2>Contact</h2>
+      <p>Want to collaborate? Reach out.</p>
+    </section>
+  </main>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+    <button class="lb-close" aria-label="Close (Esc)">✕</button>
+    <div id="lbSpinner" class="lb-spinner" aria-hidden="true" title="loading">
+      <svg viewBox="0 0 50 50" width="56" height="56" aria-hidden="true">
+        <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="31 31"></circle>
+      </svg>
+    </div>
+    <button class="lb-prev" aria-label="Previous image">‹</button>
+    <img id="lbImage" class="lb-image" alt="" />
+    <div id="lbCaption" class="lb-caption" aria-live="polite"></div>
+    <button class="lb-next" aria-label="Next image">›</button>
+  </div>
+
+  <a href="#" id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 4l-7 8h4v8h6v-8h4z"/></svg>
+  </a>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
