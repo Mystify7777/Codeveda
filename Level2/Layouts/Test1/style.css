@@ -1,0 +1,212 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
+    --card-bg-color: #ffffff;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Header and Navigation (Using Flexbox) --- */
+.main-header {
+    display: flex;
+    justify-content: space-between; /* Aligns items to the ends */
+    align-items: center; /* Vertically centers items */
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Aligns nav items in a row */
+    gap: 1.5rem;
+}
+
+.main-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease-in-out;
+}
+
+.main-nav a:hover {
+    color: var(--secondary-color);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+
+/* --- Main Content & Gallery Title --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.gallery-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+/* --- Photo Gallery (Using CSS Grid) --- */
+.photo-gallery {
+    display: grid;
+    /* Defines a responsive grid with columns that are at least 300px wide */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    overflow: hidden; /* Ensures the image corners are rounded */
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    display: block;
+}
+
+.caption {
+    padding: 1rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--primary-color);
+
+}
+
+/* --- Lightbox Styles --- */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lightbox-content {
+  max-width: 80%;
+  max-height: 80%;
+  margin-bottom: 1rem;
+}
+
+.lightbox .caption {
+  color: #fff;
+  text-align: center;
+  max-width: 80%;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 20px; right: 30px;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.lightbox .prev,
+.lightbox .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  margin-top: -50px;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  transition: 0.3s;
+  user-select: none;
+}
+
+.lightbox .prev { left: 0; }
+.lightbox .next { right: 0; }
+
+.lightbox .prev:hover,
+.lightbox .next:hover,
+.lightbox .close:hover {
+  color: #f39c12;
+}
+
+
+/* --- Responsive Design (Media Queries) --- */
+
+/* For Tablets */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column; /* Stacks logo and nav on top of each other */
+        gap: 1rem;
+    }
+
+    .gallery-title {
+        font-size: 2rem;
+    }
+}
+
+/* For Mobile Phones */
+@media (max-width: 480px) {
+    .main-header {
+        padding: 1rem;
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* Stacks nav links vertically */
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .photo-gallery {
+        /* On mobile, columns are at least 100% of the width */
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
+}

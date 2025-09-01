@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Photo Gallery</title>
+
+  <style>
+    /* Reset and base styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    /* Navigation bar using Flexbox */
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #f39c12;
+    }
+
+    /* Gallery grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .gallery-item {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      text-align: center;
+      background: #fafafa;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Flexbox -->
+  <header>
+    <nav>
+      <h1>My Gallery</h1>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Gallery Section using Grid -->
+  <section class="gallery">
+    <div class="gallery-item">
+      <img src="https://picsum.photos/id/1015/600/400" alt="Mountain view">
+      <div class="caption">Mountain View</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://picsum.photos/id/1016/600/400" alt="Forest path">
+      <div class="caption">Forest Path</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://picsum.photos/id/1024/600/400" alt="Dog in nature">
+      <div class="caption">Dog in Nature</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://picsum.photos/id/1035/600/400" alt="Waterfall">
+      <div class="caption">Waterfall</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://picsum.photos/id/1040/600/400" alt="Sunset beach">
+      <div class="caption">Sunset Beach</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://picsum.photos/id/1043/600/400" alt="City skyline">
+      <div class="caption">City Skyline</div>
+    </div>
+  </section>
+
+</body>
+</html>

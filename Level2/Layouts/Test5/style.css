@@ -1,0 +1,124 @@
+/* --- CSS Variables and Base Styles --- */
+:root {
+  --dark-bg: #111827;
+  --light-bg: #1f2937;
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --accent-color: #38bdf8;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --backdrop-color: rgba(17, 24, 39, 0.6);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; background-color: var(--dark-bg); color: var(--text-primary); line-height: 1.6; }
+
+/* --- Header & Sticky Navigation --- */
+.main-header { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; z-index: 1000; transition: background-color 0.3s ease, backdrop-filter 0.3s ease; }
+.main-header.scrolled { background-color: var(--backdrop-color); backdrop-filter: blur(10px); box-shadow: 0 2px 10px var(--shadow-color); }
+.logo a { font-size: 1.8rem; font-weight: 600; color: var(--text-primary); text-decoration: none; }
+.main-nav ul { list-style: none; display: flex; }
+.main-nav ul li { margin-left: 2rem; }
+.main-nav a { color: var(--text-secondary); text-decoration: none; font-size: 1rem; transition: color 0.3s ease; }
+.main-nav a:hover, .main-nav a.active { color: var(--accent-color); }
+
+/* Hide menu toggle on desktop */
+.menu-toggle { display: none; }
+
+/* --- Main Content & Gallery --- */
+.container { padding: 8rem 5% 4rem; max-width: 1600px; margin: 0 auto; }
+.gallery-title { font-size: 2.5rem; text-align: center; margin-bottom: 0.5rem; }
+.gallery-subtitle { text-align: center; color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.1rem; }
+.photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; grid-auto-rows: 250px; grid-auto-flow: dense; }
+@keyframes fadeInScaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.gallery-item { position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 15px var(--shadow-color); cursor: pointer; opacity: 0; animation: fadeInScaleUp 0.5s ease-out forwards; }
+.gallery-item:nth-child(1) { animation-delay: 0.1s; } .gallery-item:nth-child(2) { animation-delay: 0.15s; } .gallery-item:nth-child(3) { animation-delay: 0.2s; } .gallery-item:nth-child(4) { animation-delay: 0.25s; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, opacity 0.5s ease; opacity: 0; }
+.gallery-item img.loaded { opacity: 1; }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item .caption { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); color: white; padding: 1.5rem 1rem 1rem; transform: translateY(100%); opacity: 0; transition: transform 0.4s ease, opacity 0.4s ease; }
+.gallery-item:hover .caption { transform: translateY(0); opacity: 1; }
+
+/* --- Modern Lightbox --- */
+.lightbox { position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(17, 24, 39, 0.9); display: none; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+.lightbox.visible { display: flex; opacity: 1; }
+@keyframes zoomIn { from { transform: scale(0.8); } to { transform: scale(1); } }
+.lightbox-content { max-width: 90vw; max-height: 80vh; animation: zoomIn 0.3s ease; border-radius: 8px; }
+.lightbox .caption { text-align: center; color: var(--text-secondary); padding: 1rem 0; font-size: 1.2rem; position: absolute; bottom: 5vh; }
+.lightbox .close { position: absolute; top: 5vh; right: 5vw; color: var(--text-primary); font-size: 3rem; font-weight: bold; cursor: pointer; transition: color 0.3s ease; }
+.lightbox .close:hover { color: var(--accent-color); }
+.lightbox .prev, .lightbox .next { cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); color: var(--text-primary); background-color: rgba(0,0,0,0.3); font-size: 2rem; padding: 0.5rem; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; user-select: none; transition: background-color 0.3s ease, color 0.3s ease; }
+.lightbox .prev:hover, .lightbox .next:hover { background-color: var(--accent-color); color: var(--dark-bg); }
+.lightbox .prev { left: 3vw; } .lightbox .next { right: 3vw; }
+
+/* --- Back to Top Button --- */
+#back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 50px; height: 50px; background-color: var(--accent-color); color: var(--dark-bg); border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; box-shadow: 0 2px 10px var(--shadow-color); }
+#back-to-top.visible { opacity: 1; pointer-events: auto; }
+#back-to-top:hover { transform: scale(1.1); }
+#back-to-top svg { width: 24px; height: 24px; }
+
+/*
+=========================================
+--- Responsive Design (Media Queries) ---
+=========================================
+*/
+@media (max-width: 768px) {
+  /* --- Header & Mobile Navigation --- */
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--light-bg);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+  .main-nav ul {
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+  .main-nav ul li {
+    margin: 0;
+    text-align: center;
+  }
+  .main-nav ul li a {
+    display: block;
+    padding: 1rem;
+    width: 100%;
+  }
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .menu-toggle .bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+  }
+  /* Animate hamburger to 'X' */
+  .nav-open .menu-toggle .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .nav-open .menu-toggle .bar:nth-child(2) { opacity: 0; }
+  .nav-open .menu-toggle .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+  /* Show mobile menu */
+  .nav-open .main-nav { max-height: 300px; /* Adjust as needed */ }
+
+  /* --- Typography and Spacing Adjustments --- */
+  .container { padding-top: 6rem; }
+  .gallery-title { font-size: 2rem; }
+  .gallery-subtitle { font-size: 1rem; }
+  .photo-gallery { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+
+  /* --- Lightbox Adjustments --- */
+  .lightbox .prev { left: 1rem; }
+  .lightbox .next { right: 1rem; }
+}

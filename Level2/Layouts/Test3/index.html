@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Photo Gallery</title>
+  <link rel="stylesheet" href="..\Test1\style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header and Navigation Section -->
+  <header class="main-header">
+    <div class="logo">
+      <a href="#">PhotoSplash</a>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content: Photo Gallery -->
+  <main class="container">
+    <h1 class="gallery-title">Our Photo Gallery</h1>
+
+    <!-- Gallery using CSS Grid -->
+    <div class="photo-gallery">
+
+      <!-- 12 images (6 Unsplash + 6 Picsum) -->
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?q=80&w=600&h=400&fit=crop" alt="Wooden Pier">
+                <div class="caption">Morning Calm</div></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=800&auto=format&fit=crop" alt="Lakeside View"><div class="caption">Lakeside View</div></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=800&auto=format&fit=crop" alt="Forest Path"><div class="caption">Enchanted Forest</div></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?q=80&w=800&auto=format&fit=crop" alt="Beach Sunset"><div class="caption">Golden Sunset</div></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=800&auto=format&fit=crop" alt="Starry Night"><div class="caption">Starry Night</div></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=800&auto=format&fit=crop" alt="Waterfall"><div class="caption">Hidden Waterfall</div></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1015/800/600" alt="Mountain view"><div class="caption">Mountain View</div></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1016/800/600" alt="Forest path"><div class="caption">Forest Path</div></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1024/800/600" alt="Dog in nature"><div class="caption">Dog in Nature</div></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1035/800/600" alt="Waterfall"><div class="caption">Waterfall</div></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1040/800/600" alt="Sunset beach"><div class="caption">Sunset Beach</div></div>
+      <div class="gallery-item"><img src="https://picsum.photos/id/1043/800/600" alt="City skyline"><div class="caption">City Skyline</div></div>
+
+    </div>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="">
+    <div class="caption" id="lightbox-caption"></div>
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+  </div>
+
+  <script>
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox .close');
+    const prevBtn = document.querySelector('.lightbox .prev');
+    const nextBtn = document.querySelector('.lightbox .next');
+
+    let currentIndex = 0;
+
+    // Open lightbox on click
+    galleryItems.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = img.alt;
+        currentIndex = index;
+      });
+    });
+
+    // Close
+    closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+
+    // Next/Prev
+    function showSlide(i) {
+      currentIndex = (i + galleryItems.length) % galleryItems.length;
+      lightboxImg.src = galleryItems[currentIndex].src;
+      lightboxCaption.textContent = galleryItems[currentIndex].alt;
+    }
+    prevBtn.addEventListener('click', () => showSlide(currentIndex - 1));
+    nextBtn.addEventListener('click', () => showSlide(currentIndex + 1));
+
+    // Close on outside click
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) lightbox.style.display = 'none';
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'ArrowLeft') showSlide(currentIndex - 1);
+        if (e.key === 'ArrowRight') showSlide(currentIndex + 1);
+        if (e.key === 'Escape') lightbox.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
