@@ -1,0 +1,214 @@
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-panel: #0f3460;
+    --text-primary: #e94560;
+    --text-secondary: #dcdcdc;
+    --accent-color: #5372f0;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 550px;
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.app-header h1 {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.app-header p {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+
+.task-input-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#task-input {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
+#task-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-color);
+}
+
+.task-input-form button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.task-input-form button:hover {
+    background-color: #4361e0;
+}
+
+.task-input-form button:active {
+    transform: scale(0.95);
+}
+
+.filter-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--text-secondary);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.filter-btn.active {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: 500;
+}
+
+.task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--bg-panel);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.task-item.removing {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.9); }
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.task-item input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.task-item input[type="checkbox"]:checked {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.task-item input[type="checkbox"]:checked::after {
+    content: '✔';
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.task-text {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.task-actions button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.3s ease;
+}
+
+.task-actions button:hover {
+    color: var(--text-primary);
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+    .app-container {
+        padding: 1.5rem;
+    }
+}

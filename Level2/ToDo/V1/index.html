@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="app-container">
+        <header class="app-header">
+            <h1>My Tasks</h1>
+            <p id="date-display"></p>
+        </header>
+
+        <form id="task-form" class="task-input-form">
+            <input type="text" id="task-input" placeholder="Add a new task..." aria-label="New task input" required>
+            <button type="submit" aria-label="Add task">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                    <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/>
+                </svg>
+            </button>
+        </form>
+
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <ul id="task-list" class="task-list" aria-live="polite">
+            </ul>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
