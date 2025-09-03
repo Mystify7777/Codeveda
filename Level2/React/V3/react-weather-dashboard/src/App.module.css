@@ -1,0 +1,59 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: 240px 1fr 300px;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1400px;
+    height: 90vh;
+    max-height: 800px;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mainHeader {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.searchBar {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    /* Themed styles */
+    background-color: var(--panel, var(--panel-dark));
+    color: var(--text-primary, var(--text-primary-dark));
+    border: 1px solid var(--border, var(--border-dark));
+}
+
+.searchBar:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-blue, #38bdf8);
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 1024px) {
+    .dashboard {
+        grid-template-columns: 200px 1fr; /* Hide right panel */
+        grid-template-rows: auto 1fr;
+        height: auto;
+    }
+    .rightPanel { /* Right panel is a direct child of .dashboard, so we can hide it here */
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        display: flex;
+        flex-direction: column; /* Stack all panels vertically */
+        height: auto;
+    }
+}

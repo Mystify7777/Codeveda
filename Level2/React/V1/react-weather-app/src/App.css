@@ -1,0 +1,235 @@
+:root {
+  --bg-primary: #121826;
+  --bg-secondary: #1a2233;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --accent-blue: #38bdf8;
+  --accent-green: #34d399;
+  --border-color: rgba(148, 163, 184, 0.2);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 960px;
+  background-color: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+}
+
+h1 {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: var(--accent-blue);
+}
+
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.search-form input {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.search-form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.4);
+}
+
+.search-form button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--accent-blue);
+  color: var(--bg-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.weather-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.weather-display {
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.weather-display h2 {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.weather-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.weather-main .temperature {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.weather-description {
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.weather-details {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+.weather-details .detail-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.forecast-display {
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  overflow-x: auto; /* FIX #1: Allow horizontal scrolling on small screens */
+}
+
+/* --- Styling for the horizontal scrollbar --- */
+.forecast-display::-webkit-scrollbar {
+  height: 8px;
+}
+.forecast-display::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+.forecast-display::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.forecast-display h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  border-left: 3px solid var(--accent-green);
+}
+
+.forecast-items {
+  display: grid;
+  /* Use 5 columns, each taking up equal space */
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 1rem;
+  min-width: 500px; /* FIX #2: Give the grid a minimum width to ensure scrolling works */
+}
+
+.forecast-item {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  min-width: 90px; /* Prevent items from getting too squished */
+}
+
+.forecast-day {
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+}
+
+.forecast-item img {
+  width: 50px;
+  height: 50px;
+}
+
+.forecast-temp {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0 0;
+}
+
+.loading-message, .error-message {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  padding: 2rem;
+}
+
+.error-message {
+  color: #fca5a5;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-radius: 8px;
+}
+
+/* Desktop layout (unchanged) */
+@media (min-width: 768px) {
+  .weather-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1.8fr;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .weather-display, .forecast-display {
+    height: 100%;
+  }
+
+  /* On desktop, remove the horizontal scroll and use the flexible grid */
+  .forecast-display {
+    overflow-x: hidden;
+  }
+  .forecast-items {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    min-width: 0;
+  }
+}
+
+/* FIX #3: Add a media query for small mobile screens */
+@media (max-width: 480px) {
+    .app-container {
+        padding: 1.5rem; /* Reduce padding to give content more space */
+    }
+    .weather-main .temperature {
+        font-size: 3.5rem; /* Slightly smaller text */
+    }
+}
