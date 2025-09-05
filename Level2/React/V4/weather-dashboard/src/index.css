@@ -1,0 +1,41 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  /* Light theme */
+  --bg: #f3f6fb;
+  --panel: rgba(255,255,255,0.7);
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #4f46e5;
+  --chip: rgba(99,102,241,0.12);
+  --border: rgba(15,23,42,0.1);
+  --shadow: 0 10px 25px rgba(2,6,23,0.1);
+  --skeleton-base: #e6eaf2;
+  --skeleton-shine: #f3f6fb;
+}
+
+[data-theme="dark"] {
+  --bg: linear-gradient(135deg, #0b1220, #131c31);
+  --panel: rgba(255,255,255,0.06);
+  --text: #e5e7eb;
+  --muted: #9aa4b2;
+  --accent: #8b94ff;
+  --chip: rgba(139,148,255,0.14);
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  --skeleton-base: #192232;
+  --skeleton-shine: #243047;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 300ms ease, color 300ms ease;
+}
+a, button, input { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
