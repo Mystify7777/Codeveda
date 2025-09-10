@@ -45,11 +45,28 @@
     </button>
 
     <!-- Hero Section -->
-    <section class="h-screen flex flex-col items-center justify-center text-center bg-gradient-to-br from-blue-200 to-purple-200 dark:from-gray-900 dark:to-indigo-900 transition-colors duration-500">
-        <h1 class="text-5xl md:text-6xl font-bold mb-4 text-gray-900 dark:text-white">Hi, I'm Aryan</h1>
-        <p class="text-xl md:text-2xl mb-6 text-gray-700 dark:text-gray-200">Web Developer Intern @ Codveda</p>
-        <a href="#projects" class="bg-blue-600 dark:bg-white dark:text-gray-900 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-500 dark:hover:bg-gray-200 transition">View My Projects</a>
-    </section>
+  <section class="h-screen flex flex-col md:flex-row items-center justify-center text-center md:text-left transition-colors duration-500 px-6 relative overflow-hidden">
+
+  <!-- Background Images -->
+  <img src="light.png" alt="Light Background" class="absolute inset-0 w-full h-full object-cover block dark:hidden" />
+  <img src="dark.png" alt="Dark Background" class="absolute inset-0 w-full h-full object-cover hidden dark:block" />
+
+  <!-- Text Content -->
+  <div class="md:w-1/2 flex flex-col items-center md:items-start justify-evenly px-6 md:px-12 relative z-10">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4 text-gray-900 dark:text-white">Hi, I'm Aryan</h1>
+    <p class="text-xl md:text-2xl mb-6 text-gray-700 dark:text-gray-200">Web Developer Intern @ Codveda</p>
+    <a href="#projects" class="bg-blue-600 dark:bg-white dark:text-gray-900 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-500 dark:hover:bg-gray-200 transition">View My Projects</a>
+  </div>
+
+  <!-- Spline 3D Scene -->
+  <div class="md:w-1/2 mt-10 md:mt-0 flex items-center justify-center relative z-10">
+    <spline-viewer 
+      url="https://prod.spline.design/61mQsoXc-hoJk86L/scene.splinecode" 
+      style="width:600px; height:400px;">
+    </spline-viewer>
+  </div>
+
+</section>
 
     <!-- End of Hero Section -->
 
@@ -187,6 +204,7 @@
     </footer>
 
     <!-- Scripts -->
+     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.56/build/spline-viewer.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Initialize the AOS (Animate on Scroll) library
