@@ -1,249 +1,396 @@
-<!DOCTYPE html>
-<!-- The 'dark' class will be added or removed here by JavaScript -->
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Internship Projects | Codveda</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-     <style>
-        /* Hides scrollbar for Chrome, Safari and Opera */
-        body::-webkit-scrollbar {
-            display: none;
-        }
+  <!-- 
+    Meta tags for character set and responsive design.
+    Title for browser tab.
+    Tailwind CSS setup with dark mode enabled.
+    AOS (Animate On Scroll) CSS for scroll animations.
+    Custom styles for glassmorphism, nav underline, scrollbars, and Spline container.
+  -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Codeveda Portfolio — Aryan Kumar </title>
+  <script>tailwind = {config:{darkMode:'class'}};</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS for simple scroll animations (lightweight) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-        /* Hides scrollbar for IE, Edge and Firefox */
-        body {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-    </style>
-    <script>
-        // This tells Tailwind to use the 'class' strategy for dark mode
-        tailwind.config = {
-            darkMode: 'class'
-        }
-    </script>
-    <script>
-        // This script runs first to prevent a "flash" of the wrong theme.
-        // It checks for a saved theme in localStorage and applies it immediately.
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
+  <style>
+    /* --- Glass utilities (small, explicit overrides) --- */
+      :root {
+      --accent: #7c3aed;
+    }
+    .glass {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px) saturate(120%);
+      -webkit-backdrop-filter: blur(10px) saturate(120%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .glass-dark {
+      background: rgba(17,24,39,0.45);
+      backdrop-filter: blur(8px) saturate(110%);
+      -webkit-backdrop-filter: blur(8px) saturate(110%);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    /* Accent underline animation for navigation links */
+    .nav-link { position: relative; }
+    .nav-link::after{
+      content: '';
+      position: absolute;
+      left: 0; bottom: -6px; height: 3px; width: 0;
+      background: linear-gradient(90deg,var(--accent),rgba(255,255,255,0));
+      transition: width .28s ease;
+      border-radius: 999px;
+    }
+    .nav-link:hover::after, .nav-link[aria-current="page"]::after{ width: 60%; }
+
+    /* Respect reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce){
+      * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    }
+
+    /* Hide default scrollbar but keep accessible scrolling */
+    html { scrollbar-gutter: stable both-edges; }
+    ::-webkit-scrollbar { height:8px; width:8px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius:999px; }
+
+    /* Spline responsive container fallback */
+    .spline-wrap{ width:100%; max-width:680px; height:420px; }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-white font-sans transition-colors duration-500">
+<body class="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-100 font-sans antialiased transition-colors duration-500"> 
 
-    <!-- Theme Toggle Button -->
-    <button id="themeToggle" aria-label="Toggle theme" class="fixed top-6 right-6 z-50 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white p-2 rounded-lg shadow-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300">
-        <!-- SVG Icons for Sun and Moon -->
-        <svg id="sunIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-        <svg id="moonIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-    </button>
+  <!-- ================= HEADER ================= -->
+  <header class="fixed inset-x-4 top-6 z-50">
+    <!-- 
+      Navigation bar with logo, site name, navigation links, theme toggle, and mobile menu button.
+      Uses glassmorphism styling for a modern look.
+    -->
+    <nav class="mx-auto max-w-6xl flex items-center justify-between p-2 rounded-2xl glass-dark shadow-lg">
+      <!-- Logo and site name -->
+      <a href="#home" class="flex items-center gap-3 px-3 py-2 rounded-md hover:scale-100 focus:outline-none">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-700 to-gray-600 flex items-center justify-center ring-1 ring-white/5"> 
+          <!-- Simple plus icon SVG -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M12 3v18" stroke="white" stroke-opacity="0.85" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="sr-only">Go to home</span>
+        <span class="hidden sm:inline font-semibold tracking-wide">Heretic — Portfolio</span>
+      </a>
 
-    <!-- Hero Section -->
-  <section class="h-screen flex flex-col md:flex-row items-center justify-center text-center md:text-left transition-colors duration-500 px-6 relative overflow-hidden">
+      <!-- Desktop navigation links -->
+      <div class="hidden md:flex items-center gap-6 px-3">
+        <a class="nav-link text-sm text-gray-200 hover:text-white" href="#home" aria-current="page">Home</a>
+        <a class="nav-link text-sm text-gray-200 hover:text-white" href="#about">About</a>
+        <a class="nav-link text-sm text-gray-200 hover:text-white" href="#projects">Projects</a>
+        <a class="nav-link text-sm text-gray-200 hover:text-white" href="#contact">Contact</a>
+      </div>
 
-  <!-- Background Images -->
-  <img src="light.png" alt="Light Background" class="absolute inset-0 w-full h-full object-cover block dark:hidden" />
-  <img src="dark.png" alt="Dark Background" class="absolute inset-0 w-full h-full object-cover hidden dark:block" />
+      <!-- Theme toggle and mobile menu button -->
+      <div class="flex items-center gap-3">
+        <!-- Theme toggle button switches between light and dark mode -->
 
-  <!-- Text Content -->
-  <div class="md:w-1/2 flex flex-col items-center md:items-start justify-evenly px-6 md:px-12 relative z-10">
-    <h1 class="text-5xl md:text-6xl font-bold mb-4 text-gray-900 dark:text-white">Hi, I'm Aryan</h1>
-    <p class="text-xl md:text-2xl mb-6 text-gray-700 dark:text-gray-200">Web Developer Intern @ Codveda</p>
-    <a href="#projects" class="bg-blue-600 dark:bg-white dark:text-gray-900 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-500 dark:hover:bg-gray-200 transition">View My Projects</a>
-  </div>
+        <!--
+        <button id="themeToggle" aria-pressed="false" aria-label="Toggle theme" class="p-2 rounded-lg glass focus:ring-2 focus:ring-offset-1 focus:ring-indigo-400">
+          <svg id="icon-sun" class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M12 3v2M12 19v2M3 12H5M19 12h2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg id="icon-moon" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
 
-  <!-- Spline 3D Scene -->
-  <div class="md:w-1/2 mt-10 md:mt-0 flex items-center justify-center relative z-10">
-    <spline-viewer 
-      url="https://prod.spline.design/61mQsoXc-hoJk86L/scene.splinecode" 
-      style="width:600px; height:400px;">
-    </spline-viewer>
-  </div>
+        -->
 
-</section>
+        <!-- Mobile menu button for small screens -->
+        <button id="menuBtn" class="md:hidden p-2 rounded-lg glass focus:ring-2 focus:ring-offset-1 focus:ring-indigo-400" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </nav>
 
-    <!-- End of Hero Section -->
+    <!-- Mobile navigation menu (shown on small screens) -->
+    <div id="mobile-menu" class="mx-auto max-w-6xl mt-3 hidden md:hidden">
+      <div class="glass-dark rounded-2xl p-4 shadow">
+        <a class="block py-3 text-sm" href="#home">Home</a>
+        <a class="block py-3 text-sm" href="#about">About</a>
+        <a class="block py-3 text-sm" href="#projects">Projects</a>
+        <a class="block py-3 text-sm" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
 
+  <main class="pt-36">
 
-    <!-- About Internship -->
-    <section class="py-20 px-6 md:px-20 text-center" data-aos="fade-up">
-        <h2 class="text-4xl font-bold mb-6 text-gray-900 dark:text-white">About My Internship</h2>
-        <p class="max-w-3xl mx-auto text-gray-600 dark:text-gray-300 text-lg">
-            During my internship at Codveda Technology, I worked on a series of web development tasks ranging
-            from static websites to advanced full-stack applications. This journey enhanced my skills in
-            HTML, CSS, JavaScript, and frameworks like React, while also giving me real-world project experience.
-        </p>
+    <!-- ================= HERO SECTION ================= -->
+    <section id="home" class="relative min-h-[80vh] flex items-center justify-center px-6">
+      <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+        <!-- Left: Introduction and call-to-action -->
+        <div class="space-y-6 md:pr-6 z-10" data-aos="fade-right">
+          <!-- Glassmorphism badge with accent color -->
+          <div class="glass px-4 py-2 inline-block rounded-xl text-sm font-medium" style="--accent:#7c3aed">Web Developer • Intern</div>
+          <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+            Hi — I'm 
+            <!-- 
+              Gradient text for name "Aryan" using Tailwind and custom colors.
+              bg-clip-text and text-transparent make the gradient visible only on the text.
+            -->
+            <span 
+              class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300" 
+              title="Aryan Kumar">
+              Aryan
+            </span>.
+            <br class="hidden sm:block" />I build fast, modern web experiences.
+          </h1>
+          <p class="max-w-xl text-gray-300">
+            Focused on accessible UI, performance-first animations, and elegant micro-interactions. Currently building portfolio projects during my internship at Codveda.
+          </p>
+
+          <!-- Call-to-action buttons -->
+          <div class="flex gap-3 items-center">
+            <a href="#projects" class="inline-flex items-center gap-3 px-5 py-3 rounded-lg glass hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2" aria-label="View Projects">
+              <!-- Arrow icon SVG -->
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>View Projects</span>
+            </a>
+            <a href="#contact" class="px-4 py-3 rounded-lg border border-white/6 text-sm hover:opacity-90">Contact</a>
+          </div>
+        </div>
+
+        <!-- Right: Spline 3D viewer or fallback graphic -->
+        <div class="flex items-center justify-center">
+          <!-- 
+            Spline 3D viewer for interactive visual.
+            If Spline fails to load, nothing will show.
+            You can add a fallback <img> or <svg> inside .spline-wrap if needed.
+          -->
+          <div class="spline-wrap rounded-2xl overflow-hidden glass p-1">
+            <spline-viewer url="https://prod.spline.design/61mQsoXc-hoJk86L/scene.splinecode" style="width:100%; height:100%; min-height:320px"></spline-viewer>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6 md:px-20 bg-white dark:bg-gray-900 transition-colors duration-500">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">Projects</h2>
-
-        <!-- Level 1 -->
-        <div class="mb-16" data-aos="fade-right">
-            <h3 class="text-2xl font-semibold mb-8 text-blue-600 dark:text-blue-400">Level 1 (Basic)</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl dark:shadow-lg hover:scale-105 transition-all">
-                    <div class="flex items-center justify-center h-40 bg-green-300 dark:bg-green-500 rounded mb-4 text-gray-800 dark:text-white font-bold text-xl">Static Site</div>
-                    <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Static Website</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">A multi-page static site built with HTML & CSS.</p>
-                    <div class="flex space-x-4">
-                        <a href="Level1\Static Website\index.html" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-500">Live</a>
-                        <a href="https://github.com/Mystify7777/Codeveda/blob/main/Level1/Static%20Website" class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded hover:bg-gray-400 dark:hover:bg-gray-600">GitHub</a>
-                    </div>
-                </div>
-                <!-- Project Card 2 -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl dark:shadow-lg hover:scale-105 transition-all">
-                    <div class="flex items-center justify-center h-40 bg-cyan-300 dark:bg-cyan-500 rounded mb-4 text-gray-800 dark:text-white font-bold text-xl">Portfolio</div>
-                    <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Portfolio Page</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">A personal portfolio showcasing my skills & projects.</p>
-                    <div class="flex space-x-4">
-                        <a href="Level1\Portfolio\index.html" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-500">Live</a>
-                        <a href="https://github.com/Mystify7777/Codeveda/blob/7505bbb201a81da6010768227f2b24557bfcec65/Level1/Portfolio" class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded hover:bg-gray-400 dark:hover:bg-gray-600">GitHub</a>
-                    </div>
-                </div>
-                <!-- Project Card 3 -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl dark:shadow-lg hover:scale-105 transition-all">
-                    <div class="flex items-center justify-center h-40 bg-yellow-300 dark:bg-yellow-500 rounded mb-4 text-gray-800 dark:text-white font-bold text-xl">JS Page</div>
-                    <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Interactive JS Page</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Webpage with dropdowns, modals, and form validation.</p>
-                    <div class="flex space-x-4">
-                        <a href="Level1\JS_Page\Test5\index.html" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-500">Live</a>
-                        <a href="https://github.com/Mystify7777/Codeveda/blob/60643a8b38d8e63d97753ee019338847aa223541/Level1/JS_Page" class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded hover:bg-gray-400 dark:hover:bg-gray-600">GitHub</a>
-                    </div>
-                </div>
-            </div>
+    <!-- ================= ABOUT SECTION ================= -->
+    <section id="about" class="py-20 px-6" data-aos="fade-up">
+      <div class="max-w-4xl mx-auto">
+        <div class="glass-dark p-8 rounded-2xl md:flex md:gap-8 items-center">
+          <!-- Profile image -->
+          <div class="md:w-1/3 text-center md:text-left">
+            <img src="dark.png" alt="Profile" class="w-40 h-40 object-cover rounded-xl mx-auto md:mx-0 shadow-md" loading="lazy">
+          </div>
+          <!-- Internship description and skills -->
+          <div class="md:w-2/3 mt-4 md:mt-0">
+            <h2 class="text-2xl font-bold">About My Internship</h2>
+            <p class="mt-3 text-gray-300 leading-relaxed">
+              During my internship at Codveda Technology I contributed to front-end and full-stack tasks — building static sites, component-driven React apps, and small Node APIs. I focused on creating accessible UI, polishing interactions, and improving page performance.
+            </p>
+            <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-gray-300">
+              <li>HTML / CSS / Tailwind</li>
+              <li>JavaScript / React</li>
+              <li>Node.js / Express</li>
+              <li>MongoDB / REST APIs</li>
+            </ul>
+          </div>
         </div>
-
-        <!-- Level 2 -->
-        <div class="mb-16" data-aos="fade-left">
-            <h3 class="text-2xl font-semibold mb-8 text-purple-600 dark:text-purple-400">Level 2 (Intermediate)</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                 <!-- Project Card 1 -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl dark:shadow-lg hover:scale-105 transition-all">
-                    <div class="flex items-center justify-center h-40 bg-violet-300 dark:bg-violet-500 rounded mb-4 text-gray-800 dark:text-white font-bold text-xl">Responsive Design</div>
-                    <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Responsive Design</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Layout with Flexbox & Grid, fully responsive.</p>
-                    <div class="flex space-x-4">
-                        <a href="Level2\Layouts\Test7\index.html" class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-500">Live</a>
-                        <a href="https://github.com/Mystify7777/Codeveda/tree/main/Level2/Layouts/Test7" class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded hover:bg-gray-400 dark:hover:bg-gray-600">GitHub</a>
-                    </div>
-                </div>
-                <!-- Project Card 2 -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl dark:shadow-lg hover:scale-105 transition-all">
-                    <div class="flex items-center justify-center h-40 bg-indigo-300 dark:bg-indigo-500 rounded mb-4 text-gray-800 dark:text-white font-bold text-xl">To-Do App</div>
-                    <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">To-Do App</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Task manager with add/delete/mark complete, local storage.</p>
-                    <div class="flex space-x-4">
-                        <a href="Level2\ToDo\V2\index.html" class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-500">Live</a>
-                        <a href="https://github.com/Mystify7777/Codeveda/tree/main/Level2/ToDo/V2" class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded hover:bg-gray-400 dark:hover:bg-gray-600">GitHub</a>
-                    </div>
-                </div>
-                <!-- Project Card 3 -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl dark:shadow-lg hover:scale-105 transition-all">
-                    <div class="flex items-center justify-center h-40 bg-fuchsia-300 dark:bg-fuchsia-500 rounded mb-4 text-gray-800 dark:text-white font-bold text-xl">React App</div>
-                    <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">React App</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">Built a small React app with components & state.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://thunderous-begonia-4144f9.netlify.app/" class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-500">Live</a>
-                        <a href="https://github.com/Mystify7777/Codeveda/tree/main/Level2/React/V4/weather-dashboard" class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded hover:bg-gray-400 dark:hover:bg-gray-600">GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Level 3 -->
-        <div class="mb-16" data-aos="fade-up">
-            <h3 class="text-2xl font-semibold mb-8 text-pink-600 dark:text-pink-400">Level 3 (Advanced)</h3>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project Card 1 -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl dark:shadow-lg hover:scale-105 transition-all">
-                    <div class="flex items-center justify-center h-40 bg-pink-300 dark:bg-pink-500 rounded mb-4 text-gray-800 dark:text-white font-bold text-xl">CRUD App</div>
-                    <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Full-Stack CRUD App</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">A blog/task manager with React + Node.js + MongoDB.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="bg-pink-600 text-white px-3 py-1 rounded hover:bg-pink-500">Live</a>
-                        <a href="#" class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded hover:bg-gray-400 dark:hover:bg-gray-600">GitHub</a>
-                    </div>
-                </div>
-                <!-- Project Card 2 -->
-                <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow hover:shadow-xl dark:shadow-lg hover:scale-105 transition-all">
-                    <div class="flex items-center justify-center h-40 bg-rose-300 dark:bg-rose-500 rounded mb-4 text-gray-800 dark:text-white font-bold text-xl">Auth System</div>
-                    <h4 class="text-xl font-bold mb-2 text-gray-900 dark:text-white">Authentication System</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">User registration & login with JWT/session auth.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="bg-pink-600 text-white px-3 py-1 rounded hover:bg-pink-500">Live</a>
-                        <a href="#" class="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-1 rounded hover:bg-gray-400 dark:hover:bg-gray-600">GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 md:px-20 bg-blue-50 dark:bg-gray-800 text-center transition-colors duration-500" data-aos="fade-up">
-        <h2 class="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Contact Me</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-6">Let's connect! Reach me via:</p>
-        <div class="space-y-4 text-lg">
-            <p>Email: <a href="mailto:aryan.k.dev.mystify@gmail.com" class="text-blue-600 dark:text-indigo-400 hover:underline">aryan.k.dev.mystify@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/aryan-kumar-mystify7777/" class="text-blue-600 dark:text-indigo-400 hover:underline">aryan-kumar-mystify7777</a></p>
-            <p>GitHub: <a href="https://github.com/Mystify7777" class="text-blue-600 dark:text-indigo-400 hover:underline">Mystify7777</a></p>
+    <!-- ================= PROJECTS SECTION ================= -->
+    <section id="projects" class="py-20 px-6 bg-gradient-to-b from-transparent to-black/20" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto">
+        <!-- Section header and filter info -->
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-3xl font-bold">Projects</h2>
+          <div class="text-sm text-gray-400">Filtered: <span class="text-gray-200">All levels</span></div>
         </div>
+
+        <!-- Projects grid: Each card is a project with title, description, and links -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Example project card (repeat for each project) -->
+          <article class="glass p-6 rounded-2xl shadow-lg hover:shadow-2xl transform-gpu transition-all duration-300" data-aos="fade-up" tabindex="0">
+            <div class="h-40 rounded-lg bg-gradient-to-br from-green-500/40 to-emerald-500/30 flex items-center justify-center text-lg font-bold">Static Site</div>
+            <h3 class="mt-4 font-semibold text-lg">Static Website</h3>
+            <p class="mt-2 text-sm text-gray-300">A multi-page static site built with HTML & CSS.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md glass text-sm" href="Level1\Static Website\index.html">Live</a>
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-white/6 text-sm" href="https://github.com/Mystify7777/Codeveda/blob/main/Level1/Static%20Website">GitHub</a>
+            </div>
+          </article>
+          <!-- ...other project cards follow the same structure... -->
+          <!-- Each card uses glassmorphism, gradient backgrounds, and links to live demo and GitHub repo. -->
+          <!-- Cards are animated on scroll using AOS. -->
+
+          <!-- Portfolio Page -->
+          <article class="glass p-6 rounded-2xl shadow-lg hover:shadow-2xl transform-gpu transition-all duration-300" data-aos="fade-up" data-aos-delay="80" tabindex="0">
+            <div class="h-40 rounded-lg bg-gradient-to-br from-cyan-500/30 to-blue-500/20 flex items-center justify-center text-lg font-bold">Portfolio</div>
+            <h3 class="mt-4 font-semibold text-lg">Portfolio Page</h3>
+            <p class="mt-2 text-sm text-gray-300">A personal portfolio showcasing my skills & projects.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md glass text-sm" href="Level1\Portfolio\index.html">Live</a>
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-white/6 text-sm" href="https://github.com/Mystify7777/Codeveda/blob/7505bbb201a81da6010768227f2b24557bfcec65/Level1/Portfolio">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Interactive JS Page -->
+          <article class="glass p-6 rounded-2xl shadow-lg hover:shadow-2xl transform-gpu transition-all duration-300" data-aos="fade-up" data-aos-delay="160" tabindex="0">
+            <div class="h-40 rounded-lg bg-gradient-to-br from-yellow-400/30 to-orange-400/20 flex items-center justify-center text-lg font-bold">Interactive JS</div>
+            <h3 class="mt-4 font-semibold text-lg">Interactive JS Page</h3>
+            <p class="mt-2 text-sm text-gray-300">Webpage with dropdowns, modals, and form validation.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md glass text-sm" href="Level1\JS_Page\Test5\index.html">Live</a>
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-white/6 text-sm" href="https://github.com/Mystify7777/Codeveda/blob/60643a8b38d8e63d97753ee019338847aa223541/Level1/JS_Page">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Responsive Design -->
+          <article class="glass p-6 rounded-2xl shadow-lg hover:shadow-2xl transform-gpu transition-all duration-300" data-aos="fade-up" data-aos-delay="240" tabindex="0">
+            <div class="h-40 rounded-lg bg-gradient-to-br from-violet-500/30 to-purple-500/20 flex items-center justify-center text-lg font-bold">Responsive Design</div>
+            <h3 class="mt-4 font-semibold text-lg">Responsive Design</h3>
+            <p class="mt-2 text-sm text-gray-300">Layout with Flexbox & Grid, fully responsive.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md glass text-sm" href="Level2\Layouts\Test7\index.html">Live</a>
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-white/6 text-sm" href="https://github.com/Mystify7777/Codeveda/tree/main/Level2/Layouts/Test7">GitHub</a>
+            </div>
+          </article>
+
+          <!-- To-Do App -->
+          <article class="glass p-6 rounded-2xl shadow-lg hover:shadow-2xl transform-gpu transition-all duration-300" data-aos="fade-up" data-aos-delay="320" tabindex="0">
+            <div class="h-40 rounded-lg bg-gradient-to-br from-indigo-500/40 to-blue-500/30 flex items-center justify-center text-lg font-bold">To-Do App</div>
+            <h3 class="mt-4 font-semibold text-lg">To-Do App</h3>
+            <p class="mt-2 text-sm text-gray-300">Task manager with add/delete/mark complete, local storage.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md glass text-sm" href="Level2\ToDo\V2\index.html">Live</a>
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-white/6 text-sm" href="https://github.com/Mystify7777/Codeveda/tree/main/Level2/ToDo/V2">GitHub</a>
+            </div>
+          </article>
+
+          <!-- React App -->
+          <article class="glass p-6 rounded-2xl shadow-lg hover:shadow-2xl transform-gpu transition-all duration-300" data-aos="fade-up" data-aos-delay="400" tabindex="0">
+            <div class="h-40 rounded-lg bg-gradient-to-br from-fuchsia-500/30 to-pink-500/20 flex items-center justify-center text-lg font-bold">React App</div>
+            <h3 class="mt-4 font-semibold text-lg">React App</h3>
+            <p class="mt-2 text-sm text-gray-300">Built a small React app with components & state.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md glass text-sm" href="https://thunderous-begonia-4144f9.netlify.app/">Live</a>
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-white/6 text-sm" href="https://github.com/Mystify7777/Codeveda/tree/main/Level2/React/V4/weather-dashboard">GitHub</a>
+            </div>
+          </article>
+
+          <!-- CRUD App -->
+          <article class="glass p-6 rounded-2xl shadow-lg hover:shadow-2xl transform-gpu transition-all duration-300" data-aos="fade-up" data-aos-delay="480" tabindex="0">
+            <div class="h-40 rounded-lg bg-gradient-to-br from-pink-500/40 to-rose-500/30 flex items-center justify-center text-lg font-bold">CRUD App</div>
+            <h3 class="mt-4 font-semibold text-lg">Full-Stack CRUD App</h3>
+            <p class="mt-2 text-sm text-gray-300">A blog/task manager with React + Node.js + MongoDB.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md glass text-sm" href="#">Live</a>
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-white/6 text-sm" href="#">GitHub</a>
+            </div>
+          </article>
+
+          <!-- Authentication System -->
+          <article class="glass p-6 rounded-2xl shadow-lg hover:shadow-2xl transform-gpu transition-all duration-300" data-aos="fade-up" data-aos-delay="560" tabindex="0">
+            <div class="h-40 rounded-lg bg-gradient-to-br from-rose-500/30 to-red-500/20 flex items-center justify-center text-lg font-bold">Auth System</div>
+            <h3 class="mt-4 font-semibold text-lg">Authentication System</h3>
+            <p class="mt-2 text-sm text-gray-300">User registration & login with JWT/session auth.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md glass text-sm" href="#">Live</a>
+              <a class="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-white/6 text-sm" href="#">GitHub</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-6 text-center bg-gray-100 dark:bg-black text-gray-500 dark:text-gray-400 transition-colors duration-500">
-        <p>&copy; 2025 A Developer from Durgapur. Built during my internship @ Codveda.</p>
-    </footer>
+    <!-- ================= CONTACT SECTION ================= -->
+    <section id="contact" class="py-20 px-6" data-aos="fade-up">
+      <div class="max-w-4xl mx-auto">
+        <div class="glass p-8 rounded-2xl text-center">
+          <h2 class="text-2xl font-bold">Get in touch</h2>
+          <p class="mt-2 text-gray-300">
+            I'm available for collaboration and internship opportunities. Reach out through any of the channels below.
+          </p>
+          <!-- Contact buttons for email, LinkedIn, and GitHub -->
+          <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a class="inline-flex items-center gap-3 px-5 py-3 rounded-lg glass" href="mailto:aryan.k.dev.mystify@gmail.com">Email</a>
+            <a class="inline-flex items-center gap-3 px-5 py-3 rounded-lg border border-white/6" href="https://www.linkedin.com/in/aryan-kumar-mystify7777/">LinkedIn</a>
+            <a class="inline-flex items-center gap-3 px-5 py-3 rounded-lg glass" href="https://github.com/Mystify7777">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Scripts -->
-     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.56/build/spline-viewer.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize the AOS (Animate on Scroll) library
-        AOS.init({
-            duration: 700,
-            // 'once' is now false by default, so animations will replay on scroll
-        });
+  </main>
 
-        // Theme Toggle Logic
-        const themeToggle = document.getElementById('themeToggle');
-        const sunIcon = document.getElementById('sunIcon');
-        const moonIcon = document.getElementById('moonIcon');
-        const htmlEl = document.documentElement;
+  <!-- ================= FOOTER ================= -->
+  <footer class="mt-12 pb-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="glass-dark p-4 rounded-xl text-center text-sm text-gray-400">
+        © 2025 A Developer from Durgapur — Built during internship @ Codveda.
+      </div>
+    </div>
+  </footer>
 
-        // Function to update the icon based on the current theme
-        function updateIcon() {
-            if (htmlEl.classList.contains('dark')) {
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-            } else {
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-            }
+  <!-- ================= SCRIPTS ================= -->
+  <!-- Spline viewer for 3D scene, AOS for scroll animations -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.56/build/spline-viewer.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS scroll animations
+    AOS.init({ duration:700, once:false });
+
+    // Theme load (instant): checks localStorage and system preference
+    // const html = document.documentElement;
+    // const stored = localStorage.getItem('theme');
+    // if(stored==='dark' || (!stored && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) html.classList.add('dark');
+
+    // Theme toggle UI logic
+    // const toggle = document.getElementById('themeToggle');
+    // const sun = document.getElementById('icon-sun');
+    // const moon = document.getElementById('icon-moon');
+    // function refreshIcons(){
+    //   if(html.classList.contains('dark')){
+    //     sun.classList.add('hidden');
+    //     moon.classList.remove('hidden');
+    //     toggle.setAttribute('aria-pressed','true');
+    //   } else {
+    //     moon.classList.add('hidden');
+    //     sun.classList.remove('hidden');
+    //     toggle.setAttribute('aria-pressed','false');
+    //   }
+    // }
+    // refreshIcons();
+
+    // toggle.addEventListener('click', ()=>{
+    //   html.classList.toggle('dark');
+    //   localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    //   refreshIcons();
+    // });
+
+    // Mobile menu toggle logic
+    const menuBtn = document.getElementById('menuBtn');
+    const mobile = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', ()=>{
+      const open = mobile.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Smooth-scroll for internal links (respects reduced motion setting)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+            target.scrollIntoView();
+          } else {
+            target.scrollIntoView({behavior:'smooth', block:'start'});
+          }
         }
+      });
+    });
 
-        // Add click event listener to the button
-        themeToggle.addEventListener('click', () => {
-            htmlEl.classList.toggle('dark');
-            // Save the user's preference in localStorage
-            if (htmlEl.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
-            updateIcon();
-        });
+  </script>
 
-        // Update the icon on initial page load
-        updateIcon();
-    </script>
 </body>
 </html>
